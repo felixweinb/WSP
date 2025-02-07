@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.ticker import ScalarFormatter
 
-# Literature values (median and range)
+# Literature values
 literature_data = {
     'CH3OH': [0.41, 1.82, 2.61, 3.65, 4.3],
     'NH3': [0.24, 0.58, 0.75, 1.03, 1.48],
@@ -15,7 +15,7 @@ literature_data = {
 categories = list(literature_data.keys())
 values = [literature_data[cat] for cat in categories]
 
-# Observed mixing ratios with confidence intervals
+# Observed mixing ratios (mean, error)
 observed_data = {
     'CH3OH': (0.45, 0.03),
     'NH3': (0.6, 0.05),
@@ -25,13 +25,13 @@ observed_data = {
 }
 observed_colors = ['magenta', 'green', 'blue']
 
-#color for boxplots
+# color palette for boxplots
 colors = sns.color_palette("hls", n_colors=len(categories))
 
 # Create the figure and axis
 fig, ax = plt.subplots(figsize=(8, 5))
 
-# Box plot for literature values
+# Boxplot
 sns.boxplot(data=values, ax=ax, width=0.2, showfliers=False, palette= colors, fill=True, linecolor= 'auto',linewidth=1)
 
 # Plot observed mixing ratios with error bars
@@ -39,7 +39,7 @@ for i, (cat, (mean, err)) in enumerate(observed_data.items()):
     color = colors[i]
     ax.errorbar(i+0.2, mean, yerr=err, fmt='o', markersize=7, color=color, capsize=3, capthick=1, elinewidth=1, label=f'Observed ({cat})')
 
-# Formatting
+# formatting of plot
 ax.set_yscale("log")
 ax.set_ylim(0.01, 10)
 ax.set_xlim(-0.5, len(categories)-0.5)
