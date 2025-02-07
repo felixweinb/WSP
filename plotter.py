@@ -26,7 +26,7 @@ observed_data = {
 observed_colors = ['magenta', 'green', 'blue']
 
 #color for boxplots
-colors = sns.color_palette("Spectral", n_colors=len(categories))
+colors = sns.color_palette("hls", n_colors=len(categories))
 
 # Create the figure and axis
 fig, ax = plt.subplots(figsize=(8, 5))
